@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
+import 'animate.css';
 import { getHeroById } from "../helpers";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { Grid } from "@mui/material";
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 export const HeroPage = () => {
   const { id, ...rest } = useParams();
 
-  const heroe = getHeroById(id);
+  const heroe = useMemo(() => getHeroById(id), [id]) 
 
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ export const HeroPage = () => {
 
   console.log(heroe);
   return (
-    <Grid container className="mt-2" spacing={4}>
+    <Grid container className="mt-2 animate__animated animate__fadeInUp" spacing={4}>
       <Grid xs={4}>
         <img
           src={"/assets/heroes/" + heroe.id + ".jpg"}
@@ -32,8 +32,7 @@ export const HeroPage = () => {
           className="img-thumbnail"
         />
       </Grid>
-      <Grid xs={8}>
-        <Box >
+      <Grid item xs={8}>
           <Typography variant="h3">{heroe.superhero}</Typography>
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
@@ -48,11 +47,9 @@ export const HeroPage = () => {
           </ul>
           <Typography variant="h5">Characters</Typography>
           <p>{heroe.characters}</p>
-
           <Button variant="contained" onClick={onNavigateBack}>
             Regresar
           </Button>
-        </Box>
       </Grid>
     </Grid>
   );

@@ -1,17 +1,13 @@
 import React from "react";
 import {
-  Avatar,
   Card,
-  CardActionArea,
   CardContent,
-  CardHeader,
   CardMedia,
-  Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export const HeroeCard = ({ heroe }) => {
-  const { id, superhero, publisher, alter_ego, first_appearance, characters } =
+  const { id, superhero, alter_ego, first_appearance, characters } =
     heroe;
 
   const heroImageUrl = "/assets/heroes/" + id + ".jpg";
